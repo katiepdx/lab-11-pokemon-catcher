@@ -1,5 +1,5 @@
 import { pokemonArray } from './data/pokemonArray.js';
-import { getRandomPokemon, getCurrentPokemonCatalog } from './pokemonUtils.js';
+import { getRandomPokemon, getCurrentPokemonCatalog, findById } from './pokemonUtils.js';
 import { pokemonStats } from './data/pokemonStats.js';
 
 // import functions and grab DOM elements
@@ -71,6 +71,9 @@ pokemonRadioTags.forEach((radioTag) => {
         totalPokemonSeenCounter = totalPokemonSeenCounter + 3;
         totalPokemonSeen.textContent = `Total Pokemon Seen: ${totalPokemonSeenCounter}`;
 
+        let testRun = findById(e.target.value, pokemonStatsArrOfObj);
+        console.log(testRun);
+        
         newDeck();
     });
 });

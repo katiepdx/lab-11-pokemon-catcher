@@ -23,3 +23,16 @@ export function getCurrentPokemonCatalog() {
     //return rawCurrentPokemonCatalog here 
     return rawCurrentPokemonCatalog;
 }
+
+export function findById(pokemonArray, pokemonName) {
+    //initialize item
+    let pokemonMatch;
+    //loop through array to find pokemon name matches 
+    for (let i = 0; i < pokemonArray.length; i++) {
+        //if the names are matches
+        if (pokemonArray[i].pokemon === pokemonName) {
+            pokemonMatch = pokemonArray[i];
+            return pokemonMatch;
+        }
+    }
+}
