@@ -6,11 +6,9 @@ const totalRounds = document.getElementById('total-rounds');
 const totalPokemonSeen = document.getElementById('total-pokemon-seen');
 const pokemonImgTags = document.querySelectorAll('img');
 const pokemonRadioTags = document.querySelectorAll('input');
-const pokemonLabels = document.querySelectorAll('label');
-const pokemonSelectionContainer = document.querySelector('pokemon-selection-container');
 const nextButton = document.getElementById('next-button');
 //validation
-console.log(totalRounds, totalPokemonSeen, pokemonImgTags, pokemonRadioTags, pokemonSelectionContainer, nextButton, pokemonLabels);
+// console.log(totalRounds, totalPokemonSeen, pokemonImgTags, pokemonRadioTags, nextButton);
 
 // initialize state
 const pokemon = pokemonArray.slice(); //copy of pokemonArray 
@@ -37,19 +35,19 @@ function newDeck() {
         pokemonImgTags[2].src = randomPokemonImg3.url_image;
     }
 
-    //get checked value pokemon from pokemonRadioTags
-    const checkedPokemon = document.querySelector('input:checked');
-    pokemonRadioTags.forEach((radioTag, i) => {
-        if (i === 0) {
-            radioTag.value = randomPokemonImg1.pokemon;
-        } else if (i === 1) {
-            radioTag.value = randomPokemonImg2.pokemon;
-        } else if (i === 2) {
-            radioTag.value = randomPokemonImg3.pokemon;
-        }
-    });
-    //validate got checked value (in this case, pokemon name) of radioTag
-    console.log(checkedPokemon.value);
+    // //get checked value pokemon from pokemonRadioTags
+    // const checkedPokemon = document.querySelector('input:checked');
+    // pokemonRadioTags.forEach((radioTag, i) => {
+    //     if (i === 0) {
+    //         radioTag.value = randomPokemonImg1.pokemon;
+    //     } else if (i === 1) {
+    //         radioTag.value = randomPokemonImg2.pokemon;
+    //     } else if (i === 2) {
+    //         radioTag.value = randomPokemonImg3.pokemon;
+    //     }
+    // });
+    // //validate got checked value (in this case, pokemon name) of radioTag
+    // console.log(checkedPokemon.value);
 }
 
 newDeck();
@@ -58,20 +56,21 @@ newDeck();
 pokemonRadioTags.forEach((radioTag) => {
     radioTag.addEventListener('click', (e) => {
         //validate eventListener is on each radio button
-        console.log(e.target.value);
+        // console.log(e.target.value);
+        return e;
     });
 });
 
 nextButton.addEventListener('click', () => {
     //update game rounds
     gameRounds = gameRounds + 1;
-    console.log(gameRounds);
+    // console.log(gameRounds);
     //update round number on page
     totalRounds.textContent = `Round: ${gameRounds + 1}`;
 
     //update totalPokemonSeen counter
     totalPokemonSeenCounter = totalPokemonSeenCounter + 3;
-    console.log(totalPokemonSeenCounter);
+    // console.log(totalPokemonSeenCounter);
     //update totalPokemonSeenCounter number on page
     totalPokemonSeen.textContent = `Total Pokemon Seen: ${totalPokemonSeenCounter}`;
 
