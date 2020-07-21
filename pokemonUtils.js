@@ -5,3 +5,4 @@ export function getRandomPokemon(pokemonArray) {
     //return a random position in pokemonArray
     return pokemonArray[randomPokemonIndex];
 }
+
