@@ -15,10 +15,14 @@ const nextButton = document.getElementById('next-button');
 const pokemon = pokemonArray.slice(); //copy of pokemonArray 
 let gameRounds = 0;
 let totalPokemonSeenCounter = 3;
-let pokemonStatsArrOfObjs = pokemonStats.slice();//copy of pokemonStats array
+let pokemonEncountered = [];
+let pokemonStatsArrOfObj = pokemonStats.slice();//copy of pokemonStats array
 
 // set event listeners to update state and DOM
 function newDeck() {
+    if (gameRounds === 10) {
+        window.location.href = '../results-page/results.html';
+    }
     const randomPokemonImg1 = getRandomPokemon(pokemon);
     let randomPokemonImg2 = getRandomPokemon(pokemon);
     let randomPokemonImg3 = getRandomPokemon(pokemon);
