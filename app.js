@@ -1,6 +1,6 @@
 import { pokemonArray } from './data/pokemonArray.js';
 import { getRandomPokemon } from './pokemonUtils.js';
-import { pokemonStats } from './data/pokemonStats.js';
+// import { pokemonStats } from './data/pokemonStats.js';
 
 // import functions and grab DOM elements
 const totalRounds = document.getElementById('total-rounds');
@@ -15,8 +15,8 @@ const nextButton = document.getElementById('next-button');
 const pokemon = pokemonArray.slice(); //copy of pokemonArray 
 let gameRounds = 0;
 let totalPokemonSeenCounter = 3;
-let pokemonEncountered = [];
-let pokemonStatsArrOfObj = pokemonStats.slice();//copy of pokemonStats array
+// let pokemonEncountered = [];
+// let pokemonStatsArrOfObj = pokemonStats.slice();//copy of pokemonStats array
 
 // set event listeners to update state and DOM
 function newDeck() {
@@ -38,19 +38,19 @@ function newDeck() {
         pokemonImgTags[2].src = randomPokemonImg3.url_image;
     }
 
-    //get checked value pokemon from pokemonRadioTags
-    const checkedPokemon = document.querySelector('input:checked');
-    pokemonRadioTags.forEach((radioTag, i) => {
-        if (i === 0) {
-            radioTag.value = randomPokemonImg1.pokemon;
-        } else if (i === 1) {
-            radioTag.value = randomPokemonImg2.pokemon;
-        } else if (i === 2) {
-            radioTag.value = randomPokemonImg3.pokemon;
-        }
-    });
-    //validate got checked value (in this case, pokemon name) of radioTag
-    console.log(checkedPokemon.value);
+    // //get checked value pokemon from pokemonRadioTags
+    // const checkedPokemon = document.querySelector('input:checked');
+    // pokemonRadioTags.forEach((radioTag, i) => {
+    //     if (i === 0) {
+    //         radioTag.value = randomPokemonImg1.pokemon;
+    //     } else if (i === 1) {
+    //         radioTag.value = randomPokemonImg2.pokemon;
+    //     } else if (i === 2) {
+    //         radioTag.value = randomPokemonImg3.pokemon;
+    //     }
+    // });
+    // //validate got checked value (in this case, pokemon name) of radioTag
+    // console.log(checkedPokemon.value);
 }
 
 newDeck();
