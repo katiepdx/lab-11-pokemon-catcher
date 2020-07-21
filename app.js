@@ -1,5 +1,5 @@
 import { pokemonArray } from './data/pokemonArray.js';
-import { getRandomPokemon } from './pokemonUtils.js';
+import { getRandomPokemon, getCurrentPokemonCatalog } from './pokemonUtils.js';
 import { pokemonStats } from './data/pokemonStats.js';
 
 // import functions and grab DOM elements
@@ -16,10 +16,14 @@ let gameRounds = 0;
 let totalPokemonSeenCounter = 3;
 let pokemonEncountered = [];
 let pokemonStatsArrOfObj = pokemonStats.slice();//copy of pokemonStats array
+let localStoragePokemonStats = getCurrentPokemonCatalog();
+
+//load localStoragePokemonStats
+localStoragePokemonStats;
 
 // set event listeners to update state and DOM
 function newDeck() {
-    if (gameRounds === 10) {
+    if (pokemonEncountered.length === 10) {
         window.location.href = '../results-page/results.html';
     }
     const randomPokemonImg1 = getRandomPokemon(pokemon);
@@ -58,25 +62,15 @@ pokemonRadioTags.forEach((radioTag) => {
         //validate got checked value (in this case, pokemon name) of radioTag
         console.log(checkedPokemon.value);
 
-        //validate eventListener is on each radio button
-        // console.log(e.target.value);
         pokemonEncountered.push(e.target.value);
         console.log(pokemonEncountered);
-        // return e;
 
-        //update game rounds
         gameRounds = gameRounds + 1;
-        // console.log(gameRounds);
-        //update round number on page
         totalRounds.textContent = `Round: ${gameRounds + 1}`;
 
-        //update totalPokemonSeen counter
         totalPokemonSeenCounter = totalPokemonSeenCounter + 3;
-        // console.log(totalPokemonSeenCounter);
-        //update totalPokemonSeenCounter number on page
         totalPokemonSeen.textContent = `Total Pokemon Seen: ${totalPokemonSeenCounter}`;
 
-        //new deck of pokemon
         newDeck();
     });
 });
