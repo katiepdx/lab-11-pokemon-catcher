@@ -3,23 +3,25 @@ import { getRandomPokemon } from './pokemonUtils.js';
 
 // import functions and grab DOM elements
 const totalRounds = document.getElementById('total-rounds');
+const totalPokemonSeen = document.getElementById('total-pokemon-seen');
 const pokemonImgTags = document.querySelectorAll('img');
 const pokemonRadioTags = document.querySelectorAll('input');
 const pokemonLabels = document.querySelectorAll('label');
 const pokemonSelectionContainer = document.querySelector('pokemon-selection-container');
 const nextButton = document.getElementById('next-button');
 //validation
-console.log(totalRounds, pokemonImgTags, pokemonRadioTags, pokemonSelectionContainer, nextButton, pokemonLabels);
+console.log(totalRounds, totalPokemonSeen, pokemonImgTags, pokemonRadioTags, pokemonSelectionContainer, nextButton, pokemonLabels);
 
 // initialize state
 const pokemon = pokemonArray.slice(); //copy of pokemonArray 
 let gameRounds = 0;
-let pokemonTimesCaptured = 0;
-let pokemonCaptured = []; // array of pokemon captured
-let pokemonNotCaptured = []; //array of not captured pokemon
+let totalPokemonSeenCounter = 3;
+// let pokemonTimesCaptured = 0;
+// let pokemonCaptured = []; // array of pokemon captured
+// let pokemonNotCaptured = []; //array of not captured pokemon
 
 // set event listeners to update state and DOM
-function startGame() {
+function newDeck() {
     const randomPokemonImg1 = getRandomPokemon(pokemon);
     let randomPokemonImg2 = getRandomPokemon(pokemon);
     let randomPokemonImg3 = getRandomPokemon(pokemon);
@@ -28,22 +30,52 @@ function startGame() {
     pokemonImgTags[2].src = randomPokemonImg3.url_image;
     
     while (randomPokemonImg1 === randomPokemonImg2 || randomPokemonImg2 === randomPokemonImg3 || randomPokemonImg1 === randomPokemonImg3) {
-        const randomPokemonImg1 = getRandomPokemon(pokemon);
-        let randomPokemonImg2 = getRandomPokemon(pokemon);
-        let randomPokemonImg3 = getRandomPokemon(pokemon);
+        randomPokemonImg2 = getRandomPokemon(pokemon);
+        randomPokemonImg3 = getRandomPokemon(pokemon);
         pokemonImgTags[0].src = randomPokemonImg1.url_image;
         pokemonImgTags[1].src = randomPokemonImg2.url_image;
         pokemonImgTags[2].src = randomPokemonImg3.url_image;
     }
+
+    //get checked value pokemon from pokemonRadioTags
+    const checkedPokemon = document.querySelector('input:checked');
+    pokemonRadioTags.forEach((radioTag, i) => {
+        if (i === 0) {
+            radioTag.value = randomPokemonImg1.pokemon;
+        } else if (i === 1) {
+            radioTag.value = randomPokemonImg2.pokemon;
+        } else if (i === 2) {
+            radioTag.value = randomPokemonImg3.pokemon;
+        }
+    });
+    //validate got checked value (in this case, pokemon name) of radioTag
+    console.log(checkedPokemon.value);
 }
 
-startGame();
+newDeck();
+
+//add event listener to each of the radioTags. 
+pokemonRadioTags.forEach((radioTag) => {
+    radioTag.addEventListener('click', (e) => {
+        //validate eventListener is on each radio button
+        console.log(e.target.value);
+    });
+});
 
 nextButton.addEventListener('click', () => {
-    //update game rounds 
+    //update game rounds
     gameRounds = gameRounds + 1;
     console.log(gameRounds);
+    //update round number on page
     totalRounds.textContent = `Round: ${gameRounds + 1}`;
-    startGame();
+
+    //update totalPokemonSeen counter
+    totalPokemonSeenCounter = totalPokemonSeenCounter + 3;
+    console.log(totalPokemonSeenCounter);
+    //update totalPokemonSeenCounter number on page
+    totalPokemonSeen.textContent = `Total Pokemon Seen: ${totalPokemonSeenCounter}`;
+
+    //new deck of pokemon
+    newDeck();
 });
 
