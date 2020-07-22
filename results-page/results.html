@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../styles/home.css">
     <title>Pokemon Results</title>
 </head>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
 <body>
     <header>
         Pokemon
@@ -27,6 +27,7 @@
             <p class="stats">Pokemon Stats</p>
                 <div class="pokemon-results-container">
                     <span id="results">Results</span>
+                    <canvas id="pokemon-stats-chart" width="400" height="400"></canvas>
                 </div>
                 <div>
                     <a id="play-again-button" href="../index.html">Play Again?</a>

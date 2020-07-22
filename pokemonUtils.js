@@ -82,3 +82,21 @@ export function addPokemonEncountered(localStoragePokemonStats, pokemonName1, po
     //add updated STATS back to local storage
     localStorage.setItem('POKEMON STATS', stringyLocalStoragePokemonStats);
 }
+
+export function mungeCaptured(localStoragePokemonStats) {
+    let capturedPokemon = [];
+    for (let i = 0; i < localStoragePokemonStats.length; i++) {
+        let pokemon = localStoragePokemonStats[i];
+        capturedPokemon.push(pokemon.captured);
+    }
+    return capturedPokemon;
+}
+
+export function mungeNames(localStoragePokemonStats) {
+    let namePokemon = [];
+    for (let i = 0; i < localStoragePokemonStats.length; i++) {
+        let pokemon = localStoragePokemonStats[i];
+        namePokemon.push(pokemon.pokemon);
+    }
+    return namePokemon;
+}
