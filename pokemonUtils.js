@@ -92,11 +92,12 @@ export function mungeCaptured(localStoragePokemonStats) {
     return capturedPokemon;
 }
 
-export function mungeNames(localStoragePokemonStats) {
-    let namePokemon = [];
+//times encountered 
+export function mungeEncountered(localStoragePokemonStats) {
+    let encountered = [];
     for (let i = 0; i < localStoragePokemonStats.length; i++) {
         let pokemon = localStoragePokemonStats[i];
-        namePokemon.push(pokemon.pokemon);
+        encountered.push(pokemon.encountered);
     }
-    return namePokemon;
+    return encountered;
 }

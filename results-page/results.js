@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { mungeCaptured, mungeNames } from '../pokemonUtils.js';
+import { mungeCaptured, mungeEncountered } from '../pokemonUtils.js';
 
 const statsDisplay = document.getElementById('results');
 const resetStatsButton = document.getElementById('reset-stats-button');
@@ -16,30 +16,46 @@ let rawPokemonStats = localStorage.getItem('POKEMON STATS');
 let backToArrStats = JSON.parse(rawPokemonStats);
 
 let mungedCapturedArr = mungeCaptured(backToArrStats);
-console.log(mungedCapturedArr);
 
-let mungedEncounteredArr = mungeNames(backToArrStats);
-console.log(mungedEncounteredArr);
+let mungedEncounteredArr = mungeEncountered(backToArrStats);
 
 let pokemonNames = ["bulbasaur","venusaur-mega","ivysaur","charmander","charmeleon","charizard","charizard-mega-x","charizard-mega-y","squirtle","wartortle","blastoise","blastoise-mega","caterpie","metapod","beedrill","weedle","kakuna","beedrill-mega","pidgey"];
 
 // POKEMON STATS DOUBLE BAR CHART
-var pokemonStatsChart = document.getElementById('pokemon-stats-chart');
-new Chart(pokemonStatsChart, { 
+var pokemonStatsChart1 = document.getElementById('pokemon-stats-chart1');
+new Chart(pokemonStatsChart1, { 
     type: 'bar',
     data: {
         labels: pokemonNames,
         datasets: [{
             label: '# of Times Pokemon is ENCOUNTERED',
             data: mungedEncounteredArr,
-            backgroundColor: 'white',
+            backgroundColor: 'black',
             borderColor: 'red',
             borderWidth: 1
-        }, {
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var pokemonStatsChart2 = document.getElementById('pokemon-stats-chart2');
+new Chart(pokemonStatsChart2, { 
+    type: 'bar',
+    data: {
+        labels: pokemonNames,
+        datasets: [{
             label: '# of Times Pokemon is CAPTURED',
             data: mungedCapturedArr,
-            backgroundColor: 'black',
-            borderColor: 'green',
+            backgroundColor: 'white',
+            borderColor: 'red',
             borderWidth: 1
         }]
     },
