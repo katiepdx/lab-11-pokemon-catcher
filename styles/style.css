@@ -26,6 +26,7 @@ main {
 section {
     background-color: #FF0000;
     width: 1000px;
+    min-width: 320px;
     max-width: 80%;
     display: flex;
     flex-direction: column;
@@ -85,4 +86,9 @@ img:hover {
     width: 95px;
     border: .25rem solid white;
     border-radius: 2rem;
+}
+
+canvas {
+    height: 100%;
+    width: 100%;
 }

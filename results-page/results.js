@@ -5,9 +5,6 @@ const statsDisplay = document.getElementById('results');
 const resetStatsButton = document.getElementById('reset-stats-button');
 const chartDisplay = document.getElementById('pokemon-results-container');
 
-const backToArrayStats = localStorage.getItem('POKEMON STATS');
-statsDisplay.textContent = backToArrayStats;
-
 resetStatsButton.addEventListener('click', () => {
     localStorage.removeItem('POKEMON STATS');
     statsDisplay.textContent = 'Stats have been reset';
