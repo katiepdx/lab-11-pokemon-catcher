@@ -22,8 +22,8 @@ let mungedEncounteredArr = mungeEncountered(backToArrStats);
 let pokemonNames = ["bulbasaur","venusaur-mega","ivysaur","charmander","charmeleon","charizard","charizard-mega-x","charizard-mega-y","squirtle","wartortle","blastoise","blastoise-mega","caterpie","metapod","beedrill","weedle","kakuna","beedrill-mega","pidgey"];
 
 // POKEMON STATS DOUBLE BAR CHART
-var pokemonStatsChart1 = document.getElementById('pokemon-stats-chart1');
-new Chart(pokemonStatsChart1, { 
+var pokemonStatsChart = document.getElementById('pokemon-stats-chart');
+new Chart(pokemonStatsChart, { 
     type: 'bar',
     data: {
         labels: pokemonNames,
@@ -33,25 +33,7 @@ new Chart(pokemonStatsChart1, {
             backgroundColor: 'black',
             borderColor: 'red',
             borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-
-var pokemonStatsChart2 = document.getElementById('pokemon-stats-chart2');
-new Chart(pokemonStatsChart2, { 
-    type: 'bar',
-    data: {
-        labels: pokemonNames,
-        datasets: [{
+        },{
             label: '# of Times Pokemon is CAPTURED',
             data: mungedCapturedArr,
             backgroundColor: 'white',
