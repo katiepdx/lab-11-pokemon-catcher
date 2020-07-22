@@ -118,4 +118,3 @@ test('it should take in an array and an id and findById function will return fir
     assert.equal(expectedId1, actual1);
     assert.equal(expectedId2, actual2);
 });
-

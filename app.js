@@ -1,6 +1,6 @@
 import { pokemonArray } from './data/pokemonArray.js';
-import { getRandomPokemon, getCurrentPokemonCatalog, findById } from './pokemonUtils.js';
-import { pokemonStats } from './data/pokemonStats.js';
+import { getRandomPokemon, getCurrentPokemonCatalog, addPokemonCaptures } from './pokemonUtils.js';
+// import { pokemonStats } from './data/pokemonStats.js';
 
 // import functions and grab DOM elements
 const totalRounds = document.getElementById('total-rounds');
@@ -15,7 +15,6 @@ const pokemon = pokemonArray.slice(); //copy of pokemonArray
 let gameRounds = 0;
 let totalPokemonSeenCounter = 3;
 let pokemonEncountered = [];
-let pokemonStatsArrOfObj = pokemonStats.slice();//copy of pokemonStats array
 let localStoragePokemonStats = getCurrentPokemonCatalog();
 
 //load localStoragePokemonStats
@@ -59,18 +58,21 @@ newDeck();
 //add event listener to each of the radioTags. 
 pokemonRadioTags.forEach((radioTag) => {
     radioTag.addEventListener('click', (e) => {
-        const checkedPokemon = document.querySelector('input:checked');
+        // const checkedPokemon = document.querySelector('input:checked');
         //validate got checked value (in this case, pokemon name) of radioTag
-        console.log(checkedPokemon.value);
+        // console.log(checkedPokemon.value);
 
         pokemonEncountered.push(e.target.value);
-        console.log(pokemonEncountered);
+        // console.log(pokemonEncountered);
 
         gameRounds = gameRounds + 1;
         totalRounds.textContent = `Round: ${gameRounds + 1}`;
 
         totalPokemonSeenCounter = totalPokemonSeenCounter + 3;
         totalPokemonSeen.textContent = `Total Pokemon Seen: ${totalPokemonSeenCounter}`;
+
+        addPokemonCaptures(localStoragePokemonStats, e.target.value);
+        // console.log('TARGET', typeof e.target.value);
 
         newDeck();
     });

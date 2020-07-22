@@ -10,15 +10,15 @@ export function getRandomPokemon(pokemonArray) {
 
 export function getCurrentPokemonCatalog() {
     //retrieves getCurrentPokemonCatalog items from localStorage
-    let rawCurrentPokemonCatalog = JSON.parse(localStorage.getItem('POKEMON CATALOG'));
+    let rawCurrentPokemonCatalog = JSON.parse(localStorage.getItem('POKEMON STATS'));
 
     //if there isn't anything
     if (!rawCurrentPokemonCatalog) {
         //seed the catalog (set items) with starter items in localStorage 
-        localStorage.setItem('POKEMON CATALOG', JSON.stringify(pokemonStats));
+        localStorage.setItem('POKEMON STATS', JSON.stringify(pokemonStats));
 
         //now set items to be the starter pokemon data in local storage
-        rawCurrentPokemonCatalog = JSON.parse(localStorage.getItem('POKEMON CATALOG'));
+        rawCurrentPokemonCatalog = JSON.parse(localStorage.getItem('POKEMON STATS'));
     }
     //return rawCurrentPokemonCatalog here 
     return rawCurrentPokemonCatalog;
@@ -35,4 +35,30 @@ export function findById(pokemonArray, pokemonName) {
             return pokemonMatch;
         }
     }
+}
+
+export function addPokemonCaptures(localStoragePokemonStats, pokemonName) {
+    //get Pokemon Stats from local storage and turn it back into an object
+    // const rawPStatsArray = localStorage.getItem('POKEMON STATS');
+    // let pStatsArray = JSON.parse(rawPStatsArray);
+
+    //find by id
+    let matchedPokemon = findById(localStoragePokemonStats, pokemonName);
+
+    // console.log('pStats', localStoragePokemonStats);
+    // console.log('pokemonName', typeof pokemonName);
+    // console.log('matchedPokemon', matchedPokemon);
+
+    //if there is a match
+    if (matchedPokemon) {
+        //increment the encountered counter for that pokemon 
+        matchedPokemon.captured++;
+    }
+    
+    //put the pokemon STATS back into local storage format
+    const stringyLocalStoragePokemonStats = JSON.stringify(localStoragePokemonStats);
+    //add updated STATS back to local storage
+    localStorage.setItem('POKEMON STATS', stringyLocalStoragePokemonStats);
+
+    // console.log(localStoragePokemonStats);
 }
