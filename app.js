@@ -17,7 +17,6 @@ let localStoragePokemonStats = getCurrentPokemonCatalog();
 // set event listeners to update state and DOM
 function newDeck() {
     if (pokemonEncountered.length === 10) {
-        localStorage.removeItem('POKEMON CATALOG');
         window.location.href = '../results-page/results.html';
     }
     const randomPokemonImg1 = getRandomPokemon(pokemon);
