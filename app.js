@@ -24,6 +24,7 @@ localStoragePokemonStats;
 // set event listeners to update state and DOM
 function newDeck() {
     if (pokemonEncountered.length === 10) {
+        localStorage.removeItem('POKEMON CATALOG');
         window.location.href = '../results-page/results.html';
     }
     const randomPokemonImg1 = getRandomPokemon(pokemon);
@@ -71,9 +72,6 @@ pokemonRadioTags.forEach((radioTag) => {
         totalPokemonSeenCounter = totalPokemonSeenCounter + 3;
         totalPokemonSeen.textContent = `Total Pokemon Seen: ${totalPokemonSeenCounter}`;
 
-        let testRun = findById(e.target.value, pokemonStatsArrOfObj);
-        console.log(testRun);
-        
         newDeck();
     });
 });
