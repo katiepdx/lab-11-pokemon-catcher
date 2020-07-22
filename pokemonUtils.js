@@ -38,16 +38,8 @@ export function findById(pokemonArray, pokemonName) {
 }
 
 export function addPokemonCaptures(localStoragePokemonStats, pokemonName) {
-    //get Pokemon Stats from local storage and turn it back into an object
-    // const rawPStatsArray = localStorage.getItem('POKEMON STATS');
-    // let pStatsArray = JSON.parse(rawPStatsArray);
-
     //find by id
     let matchedPokemon = findById(localStoragePokemonStats, pokemonName);
-
-    // console.log('pStats', localStoragePokemonStats);
-    // console.log('pokemonName', typeof pokemonName);
-    // console.log('matchedPokemon', matchedPokemon);
 
     //if there is a match
     if (matchedPokemon) {
@@ -59,6 +51,34 @@ export function addPokemonCaptures(localStoragePokemonStats, pokemonName) {
     const stringyLocalStoragePokemonStats = JSON.stringify(localStoragePokemonStats);
     //add updated STATS back to local storage
     localStorage.setItem('POKEMON STATS', stringyLocalStoragePokemonStats);
+}
 
-    // console.log(localStoragePokemonStats);
+export function addPokemonEncountered(localStoragePokemonStats, pokemonName1, pokemonName2, pokemonName3) {
+    //find by id
+    let matchedPokemon1 = findById(localStoragePokemonStats, pokemonName1);
+    let matchedPokemon2 = findById(localStoragePokemonStats, pokemonName2);
+    let matchedPokemon3 = findById(localStoragePokemonStats, pokemonName3);
+
+    //if there is a match
+    if (matchedPokemon1) {
+        //increment the encountered counter for that pokemon 
+        matchedPokemon1.encountered++;
+    }
+
+    //if there is a match
+    if (matchedPokemon2) {
+        //increment the encountered counter for that pokemon 
+        matchedPokemon2.encountered++;
+    }
+
+    //if there is a match
+    if (matchedPokemon3) {
+        //increment the encountered counter for that pokemon 
+        matchedPokemon3.encountered++;
+    }
+    
+    //put the pokemon STATS back into local storage format
+    const stringyLocalStoragePokemonStats = JSON.stringify(localStoragePokemonStats);
+    //add updated STATS back to local storage
+    localStorage.setItem('POKEMON STATS', stringyLocalStoragePokemonStats);
 }
