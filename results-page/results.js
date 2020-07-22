@@ -3,6 +3,7 @@ import { mungeCaptured, mungeEncountered } from '../pokemonUtils.js';
 
 const statsDisplay = document.getElementById('results');
 const resetStatsButton = document.getElementById('reset-stats-button');
+const chartDisplay = document.getElementById('pokemon-results-container');
 
 const backToArrayStats = localStorage.getItem('POKEMON STATS');
 statsDisplay.textContent = backToArrayStats;
@@ -10,6 +11,7 @@ statsDisplay.textContent = backToArrayStats;
 resetStatsButton.addEventListener('click', () => {
     localStorage.removeItem('POKEMON STATS');
     statsDisplay.textContent = 'Stats have been reset';
+    chartDisplay.classList.add('hidden');
 });
 
 let rawPokemonStats = localStorage.getItem('POKEMON STATS');
