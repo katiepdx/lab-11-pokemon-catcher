@@ -1,0 +1,156 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    --header-height: 10vh;
+    --gutter: 30px;
+    --footer-height: 25px;
+    
+    font-family: 'Titillium Web', sans-serif;
+    background-color: white;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.heading {
+    background-color: #FFDE00;
+    color: black;
+}
+
+section {
+    background-color: #FF0000;
+    width: 1000px;
+    min-width: 320px;
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 10px;
+    border: 2px solid black;
+    border-top-right-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    background-color: #3B4CCA;
+    color: white;
+    font-size: 2rem;
+}
+
+footer {
+    display: flex;
+    justify-content: flex-end;
+    height: 20px;
+    background-color: #3B4CCA;
+}
+
+
+h2 {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.gutter-right {
+    margin-right: 20px;
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hidden {
+    display: none;
+}
+
+input {
+    display: none;
+}
+
+.pokemon-img:hover {
+    height: 95px;
+    width: 95px;
+    border: .25rem solid white;
+    border-radius: 2rem;
+}
+
+canvas {
+    height: 100%;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    display: block;
+    margin: 2%;
+    height: 4vh;
+    width: 100%;
+    background-color: white;
+    border: 2px solid black;
+    font-size: .7rem;
+    border-radius: 5%;
+    justify-content: center;
+}
+
+button:hover {
+    height: 4.5vh;
+    width: 110%;
+    background-color: yellow;
+    border: 2px solid black;
+    font-size: .7rem;
+    border-radius: 5%;
+}
+
+#pokemon-ball {
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    animation: slide 5s infinite;
+  }
+
+@keyframes slide {
+    0% {
+        left: 0vw;
+        top: 0vh;
+    }
+    10% {
+        left: 80vw;
+        top: 50vh;   
+    }
+    20% {
+        left: 40vw;
+        top: 30vh;
+    }
+    30% {
+        left: 60vw;
+        top: 10vh;
+    }
+    50% {
+        left: 20vw;
+        top: 60vh;
+    }
+    60% {
+        left: 30vw;
+        top: 10vh;
+    }
+    100% {
+        left: 0vw;
+        top: 0vh;
+    }
+  }
