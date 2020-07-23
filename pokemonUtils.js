@@ -20,7 +20,7 @@ export function getCurrentPokemonCatalog() {
         //now set items to be the starter pokemon data in local storage
         rawCurrentPokemonCatalog = JSON.parse(localStorage.getItem('POKEMON STATS'));
     }
-    //return rawCurrentPokemonCatalog here 
+    //return rawCurrentPokemonCatalog here
     return rawCurrentPokemonCatalog;
 }
 
@@ -100,4 +100,24 @@ export function mungeEncountered(localStoragePokemonStats) {
         encountered.push(pokemon.encountered);
     }
     return encountered;
+}
+
+//Not chosen Pokemon 
+export function mungeRatingPokemon(localStoragePokemonStats) {
+    let ratingNumPokemon = [];
+    for (let i = 0; i < localStoragePokemonStats.length; i++) {
+        let pokemon = localStoragePokemonStats[i];
+
+        if (pokemon.encountered >= 1 && pokemon.captured === 0) {
+            pokemon.rating = 1;
+            ratingNumPokemon.push(pokemon.rating);
+        } else if (pokemon.encountered === 0 && pokemon.captured === 0) {
+            pokemon.rating = 0;
+            ratingNumPokemon.push(pokemon.rating);
+        } else if (pokemon.encountered >= 1 && pokemon.captured >= 1) {
+            pokemon.rating = 2;
+            ratingNumPokemon.push(pokemon.rating);
+        }
+    }
+    return ratingNumPokemon;
 }

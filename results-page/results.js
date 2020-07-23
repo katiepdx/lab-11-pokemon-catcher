@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { mungeCaptured, mungeEncountered } from '../pokemonUtils.js';
+import { mungeCaptured, mungeEncountered, mungeRatingPokemon } from '../pokemonUtils.js';
 
 const statsDisplay = document.getElementById('results');
 const resetStatsButton = document.getElementById('reset-stats-button');
@@ -18,6 +18,8 @@ let mungedCapturedArr = mungeCaptured(backToArrStats);
 
 let mungedEncounteredArr = mungeEncountered(backToArrStats);
 
+let mungedRatingArr = mungeRatingPokemon(backToArrStats);
+
 let pokemonNames = ["bulbasaur","venusaur-mega","ivysaur","charmander","charmeleon","charizard","charizard-mega-x","charizard-mega-y","squirtle","wartortle","blastoise","blastoise-mega","caterpie","metapod","beedrill","weedle","kakuna","beedrill-mega","pidgey"];
 
 // POKEMON STATS DOUBLE BAR CHART
@@ -35,6 +37,32 @@ new Chart(pokemonStatsChart, {
         },{
             label: '# of Times Pokemon is CAPTURED',
             data: mungedCapturedArr,
+            backgroundColor: 'white',
+            borderColor: 'red',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+//PIE CHART OF RATINGS 
+var ratingsPokemonChart = document.getElementById('ratings-pokemon-chart');
+new Chart(ratingsPokemonChart, { 
+    type: 'bar',
+    data: {
+        labels: pokemonNames,
+        datasets: [
+        {
+            label: ' Not Seen 0, Least Fav (seen not chosen) 1, Fav (seen and chosen) 2',
+            data: mungedRatingArr,
             backgroundColor: 'white',
             borderColor: 'red',
             borderWidth: 1

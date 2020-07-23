@@ -1,5 +1,5 @@
 // IMPORT MODULES under test here:
-import { findById, mungeCaptured, mungeEncountered } from '../pokemonUtils.js';
+import { findById, mungeCaptured, mungeEncountered, /*mungeRatingPokemon*/ } from '../pokemonUtils.js';
 
 const test = QUnit.test;
 
@@ -7,37 +7,39 @@ let pokemonStats = [
     {
         pokemon: 'bulbasaur',
         encountered: 1,
-        captured: 3
+        captured: 0,
+        rating: 0
     },
     {
         pokemon: 'venusaur-mega',
-        encountered: 0,
-        captured: 2
+        encountered: 2,
+        captured: 2,
+        rating: 0
     }];
 
 test('it should take in an array and an id and findById function will return first item found matching the passed id', function(assert) {
     //Arrange
     // Parameters and arguments
-    const itemId1 = 'ivysaur';
-    const itemId2 = 'charmander';
-    const expectedId1 = pokemonStats[2];    
-    const expectedId2 = pokemonStats[3];
+    const pokemonName1 = 'bulbasaur';
+    const pokemonName2 = 'venusaur-mega';
+    const expected1 = pokemonStats[0];    
+    const expected2 = pokemonStats[1];
 
     //Act 
     //Calling the function and setting the result to the const actual
     //Takes in pokemon item name and checks it against pokemonStats for same name
-    const actual1 = findById(pokemonStats, itemId1);
-    const actual2 = findById(pokemonStats, itemId2);
+    const actual1 = findById(pokemonStats, pokemonName1);
+    const actual2 = findById(pokemonStats, pokemonName2);
 
     //Assert
-    assert.equal(expectedId1, actual1);
-    assert.equal(expectedId2, actual2);
+    assert.equal(expected1, actual1);
+    assert.equal(expected2, actual2);
 });
 
 test('this function takes in the localStorage pokemon stats and returns an array of the captured values', function(assert) {
     //Arrange
     // Parameters and arguments
-    const expectedCaptureArr = [3, 2];
+    const expectedCaptureArr = [0, 2];
 
     //Act 
     //Calling the function and setting the result to the const actual
@@ -50,7 +52,7 @@ test('this function takes in the localStorage pokemon stats and returns an array
 test('this function takes in the localStorage pokemon stats and returns an array of the encountered', function(assert) {
     //Arrange
     // Parameters and arguments
-    const expectedNamesEncounteredArr = [1, 0];
+    const expectedNamesEncounteredArr = [1, 2];
 
     //Act 
     //Calling the function and setting the result to the const actual
@@ -59,3 +61,16 @@ test('this function takes in the localStorage pokemon stats and returns an array
     //Assert
     assert.deepEqual(expectedNamesEncounteredArr, actual1);
 });
+
+// test('this mungeRatingPokemon function takes in the localStorage pokemon stats and returns an array of the pokemon rating, score 0 = never encountered, 1 = encountered but not chosen, 2 = encountered and chosen', function(assert) {
+//     //Arrange
+//     // Parameters and arguments
+//     const expectedRatingPokemon = [1, 2];
+
+//     //Act 
+//     //Calling the function and setting the result to the const actual
+//     const actual1 = mungeRatingPokemon(pokemonStats);
+
+//     //Assert
+//     assert.deepEqual(expectedRatingPokemon, actual1);
+// });
